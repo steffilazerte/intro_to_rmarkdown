@@ -4,6 +4,12 @@
 
 Welcome! This GitHub repository holds all the information relating to our workshop.
 
+The expectation is that participants have a passing familiarity with R and with
+writing and using R scripts.
+
+The goal of this workshop is to introduce participants R Markdown and Quarto
+for creating reports of their analyses for posterity and reproducibility.
+
 > **Important!**
 >
 > Make sure you're ready for the workshop by following the **Before the workshop** 
@@ -15,6 +21,7 @@ Welcome! This GitHub repository holds all the information relating to our worksh
 ## Workshop resources
 - [Slides](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html)
 - [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
+- Example analysis (best to have your own)
 
 ## Before the workshop
 
@@ -36,3 +43,4 @@ Welcome! This GitHub repository holds all the information relating to our worksh
   install.packages(c("tidyverse", "devtools", "report", "DT", 
                    "here", "knitr", "quarto", "rmarkdown"))
   ```
+- Have available an analysis R script to work with
