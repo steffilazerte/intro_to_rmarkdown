@@ -16,7 +16,6 @@ quarto::quarto_render(output_file = paste0("example_", Sys.Date(), ".html"))
 ```{r packages}
 #| message = FALSE
 library(tidyverse)
-library(here)
 ```
 
 ### Loading data
