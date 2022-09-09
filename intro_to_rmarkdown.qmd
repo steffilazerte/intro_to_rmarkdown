@@ -457,6 +457,17 @@ Consider the options we learned about. Anything you'd like to add?
 > `.qmd` documents so far
 :::
 
+## Relative locations
+
+If you use nested folders in your work, you'll want to use the [here](https://here.r-lib.org/)
+package to ensure all the file locations are consistent
+
+```{r eval = FALSE}
+library(here)
+library(tidyverse)
+
+my_data <- read_csv(here("Data/my_data.csv"))
+```
 
 
 ## Resources
