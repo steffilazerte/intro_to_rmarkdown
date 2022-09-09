@@ -22,7 +22,7 @@ for creating reports of their analyses for posterity and reproducibility.
 > features.
 
 ## Workshop resources
-- [Slides](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html)
+- Slides (optimal [html](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html) | [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.pdf))
 - [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
 - Example analysis (best to have your own)
 
