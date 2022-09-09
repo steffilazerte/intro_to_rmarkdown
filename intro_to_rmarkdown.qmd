@@ -199,7 +199,7 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
 > Demo
 
 
-# Your turn
+# Your Turn
 
 Using this RStudio template, add in some code from your own scripts and 
 render it.
@@ -308,11 +308,10 @@ A [link](https://cran.r-project.org/) to R
 ```{yaml}
 ---
 title: "My great analysis"
-format: 
-  html: 
-    code-fold: true
+format: html
 date: today
 toc: true
+code-fold: true
 ---
 ```
 
@@ -381,7 +380,7 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
 ```
   
   
-## Enhancing Reproducibility
+## Enhancing reproducibility
 
 - Make your publication figures in reports
 - Date your reports (`my_analysis_2022-09-08.html`)
@@ -401,14 +400,14 @@ DT::datatable(mtcars, extensions = 'Buttons',
 > And seriously, **[cite](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/) the packages `r emo::ji("grin")`**
 :::
 
-# Your turn
+# Your Turn
 
 Use the more advanced [template](https://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
 (`example.qmd`) to create a reproducible report of your analysis. 
 
 Consider the options we learned about. Anything you'd like to add?
 
-# Some final thoughts
+# Some Final Thoughts
 
 
 ## Rendering vs. Spinning
@@ -429,6 +428,7 @@ Consider the options we learned about. Anything you'd like to add?
 :::{.spacer .fragment  fragment-index=2}
 - Good for lots of text 
 - Better option control
+- Use ` ```{r} ` and ` ``` `to define code blocks
 :::
 
 :::
@@ -445,6 +445,8 @@ Consider the options we learned about. Anything you'd like to add?
 
 :::{.spacer .fragment fragment-index=2}
 - Easier to code 
+- Use `#'` to define markdown
+- Use `#+` to define chunk options
 :::
 
 :::
@@ -456,6 +458,76 @@ Consider the options we learned about. Anything you'd like to add?
 > Quarto notation (slightly different from Rmarkdown) *only* for
 > `.qmd` documents so far
 :::
+
+## Rendering vs. Spinning
+
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+### Rendering [(Render/Knit button)]{.small}
+
+:::{.small}
+````
+## Setup
+This is my **great** study.... I used these packages:
+
+```{{r}}
+library(tidyverse)
+```
+
+## Loading data
+These are the datasets I used
+
+```{{r}}
+my_data <- read_csv("https://raw.githubusercontent.com/steffilazerte/NRI_7350/main/data/chorus.csv")
+my_data
+```
+
+This is what it looks like
+
+```{{r}}
+#| fig.width = 6
+ggplot(data = my_data, aes(x = urbanization, y = songs)) +
+  geom_point()
+```
+````
+:::
+:::
+
+:::{.column width="50%}
+
+### Spinning [(Knit button)]{.small}
+
+:::{.small}
+```{r, eval = FALSE}
+#' ## Setup
+#' This is my **great** study.... I used these packages:
+
+library(tidyverse)
+
+#' ## Loading data
+#' These are the datasets I used
+
+my_data <- read_csv("https://raw.githubusercontent.com/steffilazerte/NRI_7350/main/data/chorus.csv")
+my_data
+
+#' This is what it looks like
+
+#+ fig.width = 6
+ggplot(data = my_data, aes(x = urbanization, y = songs)) +
+  geom_point()
+```
+:::
+:::
+
+
+
+::::
+
+
+
 
 ## Relative locations
 
@@ -494,7 +566,7 @@ my_data <- read_csv(here("Data/my_data.csv"))
 
 ### Examples
 
-- [This presentation](https://github.com/steffilazerte/intro-to-rmarkdown)
+- [This presentation](https://github.com/steffilazerte/intro_to_rmarkdown)
 - [Quarto Gallery](https://quarto.org/docs/gallery/)
 - [R Markdown Gallery](https://rmarkdown.rstudio.com/gallery.html)
 :::
