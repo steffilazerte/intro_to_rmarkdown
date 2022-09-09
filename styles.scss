@@ -1,0 +1,65 @@
+/*-- scss:defaults --*/
+$presentation-font-size-root: 30px;
+
+$presentation-h1-font-size: 2em;
+$presentation-h1-text-shadow: 2px 2px #808080;
+
+$presentation-h3-font-size: 1em;
+
+$presentation-heading-text-shadow: 1px 1px #808080;
+$presentation-heading-color: #1f508c;
+
+$code-block-font-size: 0.75em;
+
+
+/*$presentation-heading-color: #246abf;*/
+
+/*-- scss:rules --*/
+
+.reveal h3 {
+  text-shadow: none;
+  color: black;
+}
+
+.reveal .slide blockquote {
+  background-color: $selection-bg;
+  border-left: 10px solid $presentation-heading-color;
+  padding-left: 0.5em;
+  color: inherit;
+}
+
+.reveal pre.sourceCode code {
+  max-height: 700px;
+}
+  /* -- Custom classes */
+
+
+.spacer {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.small {
+  font-size: 80%;
+}
+
+.big {
+  font-size: 120%;
+}
+
+.box {
+  border: 2px solid #808080;;
+  padding: 0.5em;
+  box-shadow: 5px 5px #808080;
+  overflow: scroll;
+  max-height: 600px;
+}
+
+.reveal .hide table td {
+  border-bottom: none;
+}
+
+.reveal .slide .squish li {
+  margin-top: 0.2em;
+  margin-bottom: 0.1em;
+}

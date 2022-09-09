@@ -1,0 +1,67 @@
+---
+title: "My great analysis"
+format: "html"
+date: today
+toc: true
+---
+
+### Render report
+```{r}
+#| eval: false
+quarto::quarto_render(output_file = paste0("example_", Sys.Date(), ".html"))
+```
+
+## Setup
+
+```{r packages}
+#| message = FALSE
+library(tidyverse)
+library(here)
+```
+
+### Loading data
+
+```{r data}
+
+```
+
+## Exploration
+
+```{r exploration}
+
+```
+
+
+## Analyses
+
+```{r analysis}
+
+```
+
+## Reproducibility
+
+### Data
+- Data available for download via CSV/Excel buttons (do not use this as data source, but as confirmation and for posterity)
+```{r}
+DT::datatable(mtcars, extensions = 'Buttons',
+              options = list(dom = 'Bfrtip', buttons = c('csv', 'excel')))
+```
+
+### Packages
+
+Make sure you [cite](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/) important packages in your manuscripts
+
+
+```{r}
+#| results: asis
+report::report_packages()
+report::cite_packages()
+```
+
+
+```{r}
+devtools::session_info()
+```
+
+
+

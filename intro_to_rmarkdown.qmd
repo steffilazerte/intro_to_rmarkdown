@@ -1,0 +1,492 @@
+---
+format: 
+  revealjs:
+    theme: [default, styles.scss]
+    width: 1200
+    slide-number: true
+execute: 
+  echo: true
+---
+
+## Introduction to Rmarkdown/Quarto <br> for Reproducibility
+
+### SCO-SOC Workshop 2022 {.spacer}
+
+Steffi LaZerte
+
+::: {layout-ncol=2 style="text-align:center" layout-valign="center"}
+![](https://rmarkdown.rstudio.com/docs/reference/figures/logo.png){fig-alt="Rmarkdown hex logo featuring a light green feather pen in a dark teal hexagon with the word rmarkdown below"}
+
+![](https://quarto.org/quarto.png){fig-alt="Quarto logo featuring a light blue background and a white quartered circle before the word quarto"}
+:::
+
+# Getting Started
+
+## Introduction
+
+Today learning to create static HTML reports from R code  
+[(but can also create websites, and presentations--like this one!)]{.small}
+
+. . .
+
+**Why?**
+
+::: {.incremental}
+
+- Keep track of your code *and* results
+- Share your work
+- Ensure reproducibility
+- Be nice to your future self (*What did I do again? What were the results?*)
+:::
+
+. . . 
+
+> Okay, what kind of report?
+
+## For example...
+
+````
+## Setup
+This is my **great** study.... I used these packages:
+
+```{{r}}
+library(tidyverse)
+```
+
+## Loading data
+These are the datasets I used
+
+```{{r}}
+my_data <- read_csv("https://raw.githubusercontent.com/steffilazerte/NRI_7350/main/data/chorus.csv")
+my_data
+```
+
+This is what it looks like
+
+```{{r}}
+#| fig.width = 6
+ggplot(data = my_data, aes(x = urbanization, y = songs)) +
+  geom_point()
+```
+````
+
+## Becomes...
+
+:::{.box .small}
+
+### Setup
+This is my **great** study.... I used these packages:
+
+```{r message = TRUE}
+library(tidyverse)
+```
+
+### Loading data {.spacer}
+These are the datasets I used
+
+```{r}
+my_data <- read_csv("https://raw.githubusercontent.com/steffilazerte/NRI_7350/main/data/chorus.csv")
+my_data
+```
+
+This is what it looks like
+
+```{r}
+#| fig.width = 6
+ggplot(data = my_data, aes(x = urbanization, y = songs)) +
+  geom_point()
+```
+
+:::
+
+
+## For another example...
+
+
+````
+### Visual of Thresholds Calculations
+
+> - Pink ribbon = 99% Confidence interval of latitudes predicted from GAM
+> - Black lines in the ribbon are the upper and lower limit, the middle
+line is the predicted latitude (from GAM model)
+> - Transparent blue rectangles indicate the date ranges used to establish
+the latitudes just after and just before migration.
+> - Blue horizontal lines represents the latitude threshold for spring 
+    migration (begin/end)
+> - Orange horzontal lines represents the latitude threshold for fall 
+    migration (begin/end)
+
+```{{r}}
+#| fig.asp: 1 
+#| fig.width: 15
+wrap_plots(g) + plot_layout(guides = "collect", nrow = 1)
+```
+
+````
+
+:::{.small .spacer}
+(*Plus a bunch of other options*)
+:::
+
+
+## Becomes...
+
+
+![](report.png)
+
+## Wait a minute...
+
+> That doesn't look like an R Script...
+
+
+::::{.columns}
+
+:::{.column width="60%" .small}
+
+````{code-line-numbers="|5,12-13,20-21|1-2,8-9,16|4,6,11,14,18,22|19"}
+## Setup
+This is my **great** study.... I used these packages:
+
+```{{r}}
+library(tidyverse)
+```
+
+## Loading data
+These are the datasets I used
+
+```{{r}}
+my_data <- read_csv("https://raw.githubusercontent.com/steffilazerte/NRI_7350/main/data/chorus.csv")
+my_data
+```
+
+This is what it looks like
+
+```{{r}}
+#| fig.width = 6
+ggplot(data = my_data, aes(x = urbanization, y = songs)) +
+  geom_point()
+```
+````
+:::
+
+:::{.column width="40%"}
+
+### Four things going on...
+
+1. R code
+2. Markdown
+3. R code fences (define code *chunks*)
+4. YAML *chunk* options
+
+:::{.fragment}
+> This is actually not an **.R** script...  
+> it's an **Rmarkdown (`.Rmd`)** or    
+> **Quarto (`.qmd`)** document!
+:::
+
+:::
+
+::::
+
+
+## Quick start
+
+- File > New File > Quarto Document [(or R Markdown, if you prefer)]{.small}
+- Add details, click "Create"
+- Click "Render" button in the top panel (Quarto)
+  - [or "Knit" button (R Markdown)]{.small}
+
+> Demo
+
+
+# Your turn
+
+Using this RStudio template, add in some code from your own scripts and 
+render it.
+
+Keep it relatively simple for now `r emo::ji("wink")`
+
+. . . 
+
+:::{.spacer}
+> What just happened? What are all these things?<br>
+> **Rmarkdown? Markdown? Quarto?**
+:::
+
+
+## Terminology
+
+### R & RStudio
+
+- Both are programs
+- R is the programming language/envrionment
+- RStudio is an IDE (integrated development environment)
+
+
+## Terminology
+
+### Markdown
+ 
+- A text markup language
+- Files are `.md`
+
+
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+[**For example, the following...**]{.spacer}
+
+```{md, eval = FALSE}
+### My heading
+
+**Hi!** This is in *italics*
+
+A [link](https://cran.r-project.org/) to R
+
+```
+:::
+
+::: {.column width="40%"}
+
+[**Becomes...**]{.spacer}
+
+### My heading
+
+**Hi!** This is in *italics*
+
+A [link](https://cran.r-project.org/) to R
+:::
+
+::::
+
+
+## Terminology
+
+### RMarkdown, Quarto, knitr, and Pandoc
+
+- **RMarkdown(`.Rmd`)** and **Quarto (`.qmd`)** files are a *mix* of Markdown *and* R code
+- **knitr** is an R package which evaluates R code and returns the output as a Markdown file
+- **Pandoc** is a separate (independent) program that converts Markdown to a variety of formats
+
+![](https://quarto.org/docs/get-started/hello/images/rstudio-qmd-how-it-works.png){fig-alt="How Quarto works: qmd to knitr to md to pandoc to multiple formats including pdf, HTML and Microsoft Word"}
+
+. . . 
+
+> **Rmarkdown vs. Quarto**  
+> Quarto (`.qmd`) is the *next generation* of Rmarkdown (`.Rmd`). 
+> You can still use Rmarkdown (it's not going anywhere), 
+> but Quarto is much newer and more powerful.
+
+
+## Terminology
+
+### YAML, HTML, CSS
+
+. . . 
+
+- **YAML** is a language for specifying metadata  
+  - Used for specifying document options and *chunk* options
+
+. . . 
+
+- **HTML** is a language for making websites
+  - Can be used directly in `.qmd`/`.Rmd` files if you plan to output to HTML
+  - E.g., can use `<br>` for a line **br**eak
+
+. . .
+
+- **CSS** is a language for *styling* websites
+  - Can be used to apply custom styles to documents
+
+
+## Some options
+
+### Document level options - YAML block
+
+```{yaml}
+---
+title: "My great analysis"
+format: 
+  html: 
+    code-fold: true
+date: today
+toc: true
+---
+```
+
+- `date: today` to include today's date
+- `toc: true` to include a table of contents
+- `code-fold: true` to hide code (with option to show)
+
+
+> **Note:** These are Quarto options! RMarkdown has similar ones, but they may 
+> be slightly different. E.g., `format: html_document` in RMarkdown.
+
+
+## Some options
+
+### Chunk level options - YAML notation
+
+::::{.columns}
+
+:::{.column width="55%" .small}
+
+````
+```{{r}}
+#| fig.width: 10
+#| fig.asp: 0.5
+#| fig.alt: |
+#|   A scatterplot in black and white showing degree of 
+#|   urbanization on the x-axis and number of songs on 
+#|   the y-axis with no appreciable pattern in the data.
+#| fig.cap: |
+#|   The relationship between urbanization and the number
+#|   of songs in mountain chickadee dawn choruses.
+
+ggplot(data = my_data, aes(x = urbanization, y = songs)) +
+  geom_point()
+```
+````
+:::
+
+:::{.column width="45%"}
+
+- `fig.width` width of figure in inches
+- `fig.asp` aspect of the figure (1 = square)
+   (i.e. height = width * aspect)
+- `fig.alt` **Accessibility** Alt text for screen readers helping those who can't see the figure 
+   (should be descriptive, not the same as a caption)
+- `fig.cap` Figure caption 
+
+:::
+  
+::::
+
+## Gives...
+```{r}
+#| fig.width: 10
+#| fig.asp: 0.5
+#| fig.alt: |
+#|   A scatterplot in black and white showing degree of 
+#|   urbanization on the x-axis and number of songs on 
+#|   the y-axis with no appreciable pattern in the data.
+#| fig.cap: |
+#|   The relationship between urbanization and the number
+#|   of songs in mountain chickadee dawn choruses.
+
+ggplot(data = my_data, aes(x = urbanization, y = songs)) +
+  geom_point()
+```
+  
+  
+## Enhancing Reproducibility
+
+- Make your publication figures in reports
+- Date your reports (`my_analysis_2022-09-08.html`)
+- Include info on packages used (because you're going to [cite](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/) them... right? **RIGHT?**)
+   - `devtools::session_info()`
+   - `report::report_packages()`
+   - `report::cite_packages()`
+- Embed data directly (for smaller datasets) using [DT](https://rstudio.github.io/DT/) package
+```{r eval = FALSE}
+DT::datatable(mtcars, extensions = 'Buttons',
+              options = list(dom = 'Bfrtip', buttons = c('csv', 'excel')))
+```
+                 
+. . . 
+
+:::{.spacer}
+> And seriously, **[cite](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/) the packages `r emo::ji("grin")`**
+:::
+
+# Your turn
+
+Use the more advanced [template](https://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
+(`example.qmd`) to create a reproducible report of your analysis. 
+
+Consider the options we learned about. Anything you'd like to add?
+
+# Some final thoughts
+
+
+## Rendering vs. Spinning
+
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+### Rendering [(Render/Knit button)]{.small}
+:::{.hide .spacer}
+|                    |   |       |   |      |
+| -----------------: | - | ----- | - | ---- |
+| **`.Rmd`/`.qmd`**  | → | `.md` | → | HTML |
+: {tbl-colwidths="[10,5,5,5,75]"}
+:::
+
+:::{.spacer .fragment  fragment-index=2}
+- Good for lots of text 
+- Better option control
+:::
+
+:::
+
+:::{.column width="50%"}
+### Spinning [(Knit button)]{.small}
+:::{.hide .spacer}
+|                    |   |       |   |      |
+| -----------------: | - | ----- | - | ---- |
+|**`.R`**           | → | `.md` | → | HTML |
+: {tbl-colwidths="[10,5,5,5,75]"}
+:::
+
+
+:::{.spacer .fragment fragment-index=2}
+- Easier to code 
+:::
+
+:::
+::::
+
+. . . 
+
+:::{.spacer}
+> Quarto notation (slightly different from Rmarkdown) *only* for
+> `.qmd` documents so far
+:::
+
+
+
+## Resources
+
+::::{.columns}
+
+:::{.column width="70%"}
+
+### Online References
+
+- [Quarto Documentation](https://quarto.org)
+- [Openscapes' Quarto Tutorial](https://openscapes.github.io/quarto-website-tutorial/)
+- [RStudio's Welcome to Quarto Workshop!](https://www.youtube.com/watch?v=yvi5uXQMvu4) [(video)]{.small}
+- [We don't talk about Quarto](https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/)  [(blog post)]{.small}
+- [A Quarto tip a day](https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/) [(blog)]{.small}
+- [R Markdown Documentation](https://rmarkdown.rstudio.com/)
+- [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)  [(online book)]{.small}
+- RStudio > Help > Markdown Quick Reference
+- RStudio > Help > Cheat Sheets > Rmarkdown Cheat Sheet
+- RStudio > Help > Cheat Sheets > Rmarkdown Reference Guide
+:::
+
+:::{.column width="30%"}
+
+### Examples
+
+- [This presentation](https://github.com/steffilazerte/intro-to-rmarkdown)
+- [Quarto Gallery](https://quarto.org/docs/gallery/)
+- [R Markdown Gallery](https://rmarkdown.rstudio.com/gallery.html)
+:::
+
+::::
+
