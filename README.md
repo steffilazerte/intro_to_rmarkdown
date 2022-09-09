@@ -2,6 +2,9 @@
 
 *[SCO-SOC Workshop 2022](https://scosoc2022.wordpress.com/workshops/)*
 
+**Thursday September 15th, 2022 10am-12pm CDT**
+
+
 Welcome! This GitHub repository holds all the information relating to our workshop.
 
 The expectation is that participants have a passing familiarity with R and with
