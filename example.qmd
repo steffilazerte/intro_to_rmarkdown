@@ -14,7 +14,7 @@ quarto::quarto_render(output_file = paste0("example_", Sys.Date(), ".html"))
 ## Setup
 
 ```{r packages}
-#| message = FALSE
+#| message: false
 library(tidyverse)
 ```
 
