@@ -8,7 +8,7 @@ execute:
   echo: true
 ---
 
-## Introduction to Rmarkdown/Quarto <br> for Reproducibility
+## Introduction to R Markdown/Quarto <br> for Reproducibility
 
 ### SCO-SOC Workshop 2022 {.spacer}
 
@@ -17,7 +17,7 @@ Steffi LaZerte
 ![](https://steffilazerte.ca/images/logo_eg.png){style="position:absolute; left:0; bottom:20%; width:30%"}
 
 
-![](https://rmarkdown.rstudio.com/docs/reference/figures/logo.png){fig-alt="Rmarkdown hex logo featuring a light green feather pen in a dark teal hexagon with the word rmarkdown below" style="position:absolute; top:15%; right:10%; width: 20%"}
+![](https://rmarkdown.rstudio.com/docs/reference/figures/logo.png){fig-alt="R Markdown hex logo featuring a light green feather pen in a dark teal hexagon with the word R Markdown below" style="position:absolute; top:15%; right:10%; width: 20%"}
 
 ![](https://quarto.org/quarto.png){fig-alt="Quarto logo featuring a light blue background and a white quartered circle before the word quarto" style="position:absolute; top:70%; right:5%; width:30%"}
 
@@ -228,7 +228,7 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
 
 :::{.fragment}
 > This is actually not an **.R** script...  
-> it's an **Rmarkdown (`.Rmd`)** or    
+> it's an **R Markdown (`.Rmd`)** or    
 > **Quarto (`.qmd`)** document!
 :::
 
@@ -258,7 +258,7 @@ Keep it relatively simple for now `r emo::ji("wink")`
 
 :::{.spacer}
 > What just happened? What are all these things?<br>
-> **Rmarkdown? Markdown? Quarto?**
+> **R Markdown? Markdown? Quarto?**
 :::
 
 
@@ -312,9 +312,9 @@ A [link](https://cran.r-project.org/) to R
 
 ## Terminology
 
-### RMarkdown, Quarto, knitr, and Pandoc
+### R Markdown, Quarto, knitr, and Pandoc
 
-- **RMarkdown(`.Rmd`)** and **Quarto (`.qmd`)** files are a *mix* of Markdown *and* R code
+- **R Markdown(`.Rmd`)** and **Quarto (`.qmd`)** files are a *mix* of Markdown *and* R code
 - **knitr** is an R package which evaluates R code and returns the output as a Markdown file
 - **Pandoc** is a separate (independent) program that converts Markdown to a variety of formats
 
@@ -322,9 +322,9 @@ A [link](https://cran.r-project.org/) to R
 
 . . . 
 
-> **Rmarkdown vs. Quarto**  
-> Quarto (`.qmd`) is the *next generation* of Rmarkdown (`.Rmd`). 
-> You can still use Rmarkdown (it's not going anywhere), 
+> **R Markdown vs. Quarto**  
+> Quarto (`.qmd`) is the *next generation* of R Markdown (`.Rmd`). 
+> You can still use R Markdown (it's not going anywhere), 
 > but Quarto is much newer and more powerful.
 
 
@@ -368,8 +368,8 @@ code-fold: true
 - `code-fold: true` to hide code (with option to show)
 
 
-> **Note:** These are Quarto options! RMarkdown has similar ones, but they may 
-> be slightly different. E.g., `format: html_document` in RMarkdown.
+> **Note:** These are Quarto options! R Markdown has similar ones, but they may 
+> be slightly different. E.g., `format: html_document` in R Markdown.
 
 
 ## Some options
@@ -503,7 +503,7 @@ Consider the options we learned about. Anything you'd like to add?
 . . . 
 
 :::{.spacer}
-> Quarto notation (slightly different from Rmarkdown) *only* for
+> Quarto notation (slightly different from R Markdown) *only* for
 > `.qmd` documents so far
 :::
 
@@ -606,8 +606,8 @@ my_data <- read_csv(here("Data/my_data.csv"))
 - [R Markdown Documentation](https://rmarkdown.rstudio.com/)
 - [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)  [(online book)]{.small}
 - RStudio > Help > Markdown Quick Reference
-- RStudio > Help > Cheat Sheets > Rmarkdown Cheat Sheet
-- RStudio > Help > Cheat Sheets > Rmarkdown Reference Guide
+- RStudio > Help > Cheat Sheets > R Markdown Cheat Sheet
+- RStudio > Help > Cheat Sheets > R Markdown Reference Guide
 :::
 
 :::{.column width="30%"}
