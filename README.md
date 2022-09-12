@@ -24,7 +24,7 @@ for creating reports of their analyses for posterity and reproducibility.
 ## Workshop resources
 - Slides 
   - [html](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html) (best)
-  - [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.pdf)
+  - [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown_sm.pdf)
 - [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
 - Example analysis (best to have your own)
 
