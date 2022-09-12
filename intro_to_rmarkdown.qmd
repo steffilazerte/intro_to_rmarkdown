@@ -12,15 +12,63 @@ execute:
 
 ### SCO-SOC Workshop 2022 {.spacer}
 
-Steffi LaZerte
+Steffi LaZerte  
 
-::: {layout-ncol=2 style="text-align:center" layout-valign="center"}
-![](https://rmarkdown.rstudio.com/docs/reference/figures/logo.png){fig-alt="Rmarkdown hex logo featuring a light green feather pen in a dark teal hexagon with the word rmarkdown below"}
+![](https://steffilazerte.ca/images/logo_eg.png){style="position:absolute; left:0; bottom:20%; width:30%"}
 
-![](https://quarto.org/quarto.png){fig-alt="Quarto logo featuring a light blue background and a white quartered circle before the word quarto"}
+
+![](https://rmarkdown.rstudio.com/docs/reference/figures/logo.png){fig-alt="Rmarkdown hex logo featuring a light green feather pen in a dark teal hexagon with the word rmarkdown below" style="position:absolute; top:15%; right:10%; width: 20%"}
+
+![](https://quarto.org/quarto.png){fig-alt="Quarto logo featuring a light blue background and a white quartered circle before the word quarto" style="position:absolute; top:70%; right:5%; width:30%"}
+
+
+:::{style="position:absolute; bottom:0"}
+ `r icons::fontawesome("globe")` [steffilazerte.ca](https://steffilazerte.ca)<br>
+`r icons::fontawesome("twitter")` [@steffilazerte](https://twitter.com/steffilazerte)<br>
+`r icons::fontawesome("github")` [steffilazerte](https://github.com/steffilazerte)
 :::
 
+
 # Getting Started
+
+
+## Online workshops can be challenging
+
+
+:::{.fragment}
+### Consider keeping your video on [(if possible)]{.small}
+
+- Kids? Pets? Spouses? No problem
+- But ultimately, you need be comfortable! [(and you absolutely have the right to privacy)]{.small}
+:::
+
+
+:::{.fragment}
+### Interrupt me!
+
+- Generally keep yourself muted but un-mute anytime to ask questions
+:::
+
+:::{.fragment}
+### Ask Questions!
+
+- Group trouble-shooting is really valuable
+- If you have a problem, others may also (or may have it in the future)
+:::
+
+:::{.fragment}
+### Screen-sharing
+
+- I may ask you to share your screen with the group [(feel free to decline)]{.small}
+- For privacy, close your email etc. Or just share your RStudio window
+:::
+
+## This is me! {background-color="black" background-image="figures/office3.jpg"}
+
+
+## These are my creatures {background-color="black" background-image="figures/creatures.jpg"}
+
+## This is my garden {background-color="black" background-image="figures/garden.jpg"}
 
 ## Introduction
 
@@ -542,7 +590,7 @@ my_data <- read_csv(here("Data/my_data.csv"))
 ```
 
 
-## Resources
+## Resources  {.nostretch}
 
 ::::{.columns}
 
@@ -572,4 +620,14 @@ my_data <- read_csv(here("Data/my_data.csv"))
 :::
 
 ::::
+
+. . .
+
+
+### Thank you! {style="position:absolute; top:50%; right:0"}
+
+![](https://steffilazerte.ca/images/logo_eg.png){style="position:absolute; right:0; top:58%; width:30%"}
+
+
+[*Slides created with [Quarto](https://quarto.org)<br>Updated `r Sys.Date()`*]{.small style="position:absolute; top:78%; right:0; text-align:right"}
 
