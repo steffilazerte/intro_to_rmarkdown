@@ -21,11 +21,11 @@ Participants do not need to be R experts but should be somewhat familiar with R 
 ## Workshop resources
 
 -   Slides (Coming soon!)
-    <!-- -   [html](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html) (best)
-    -   [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown_sm.pdf)
--   [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
--   Example analysis (best to have your own)
- -->
+    <!-- -   [html](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html) (best) -->
+    <!-- -   [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown_sm.pdf) -->
+-   <!-- [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd) -->
+-   <!-- Example analysis (best to have your own) -->
+
 
 ## Before the workshop
 
