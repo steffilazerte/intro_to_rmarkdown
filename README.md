@@ -1,51 +1,56 @@
 # Introduction to Rmarkdown/Quarto for Reproducibility
 
-*[SCO-SOC Workshop 2022](https://scosoc2022.wordpress.com/workshops/)*
+*Birds Canada Workshop 2023*
 
-**Thursday September 15th, 2022 10am-12pm CDT**
-
+**Tuesday April 18th, 2023 12pm-2pm Eastern**
 
 Welcome! This GitHub repository holds all the information relating to our workshop.
 
-The expectation is that participants have a passing familiarity with R and with
-writing and using R scripts.
+Do you struggle to keep track of your R analyses? Is future-self constantly complaining about past-self's inability to document scripts, data and package versions? Come explore the magic of RMarkdown & Quarto! Turn your R scripts into reproducible reports complete with all the information future-self needs to write up your analyses.
 
-The goal of this workshop is to introduce participants R Markdown and Quarto
-for creating reports of their analyses for posterity and reproducibility.
+In this workshop we'll learn about Markdown, RMarkdown and Quarto. We'll cover different ways of creating reports from scripts and how to customize the output to maximize beauty as well as reproducibility. You will have the opportunity to learn and practice, and will go home of a collection of resources to help you along your journey. Example scripts will be available, but best is to have your own!
+
+Participants do not need to be R experts but should be somewhat familiar with R and RStudio and will be expected to have both installed prior to the workshop
 
 > **Important!**
 >
-> Make sure you're ready for the workshop by following the **Before the workshop** 
-> instructions. Please [email me](mailto:sel@steffilazerte.ca) if you run into any problems.
+> Make sure you're ready for the workshop by following the **Before the workshop** instructions. Please [email me](mailto:sel@steffilazerte.ca) if you run into any problems.
 >
-> Take care to update RStudio, in particular, as we need some of the newest 
-> features.
+> Take care to update RStudio, in particular, as we need some of the newest features.
 
 ## Workshop resources
-- Slides 
-  - [html](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html) (best)
-  - [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown_sm.pdf)
-- [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
-- Example analysis (best to have your own)
+
+-   Slides (Coming soon!)
+    <!-- -   [html](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html) (best)
+    -   [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown_sm.pdf)
+-   [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
+-   Example analysis (best to have your own)
+ -->
 
 ## Before the workshop
 
-- [Install R](https://muug.ca/mirror/cran/)
-- [Install RStudio](https://www.rstudio.com/products/rstudio/download/)
-  - (**update RStudio** to the newest version, if it's already installed)
-- Install R packages for following along
-  - `tidyverse`
-  - `devtools`
-  - `report`
-  - `DT`
-  - `here`
-  - `knitr`
-  - `quarto`
-  - `rmarkdown`
-  
-  To install via R commands:
-  ```
-  install.packages(c("tidyverse", "devtools", "report", "DT", 
-                   "here", "knitr", "quarto", "rmarkdown"))
-  ```
-- Have available an analysis R script to work with
+-   [Install R](https://muug.ca/mirror/cran/)
+
+-   [Install RStudio](https://www.rstudio.com/products/rstudio/download/)
+
+    -   (**update RStudio** to the newest version, if it's already installed)
+
+-   Install R packages for following along
+
+    -   `tidyverse`
+    -   `devtools`
+    -   `report`
+    -   `DT`
+    -   `here`
+    -   `knitr`
+    -   `quarto`
+    -   `rmarkdown`
+
+    To install via R commands:
+
+    ```         
+    install.packages(c("tidyverse", "devtools", "report", "DT", 
+                     "here", "knitr", "quarto", "rmarkdown"))
+    ```
+
+-   Have available an analysis R script to work with
