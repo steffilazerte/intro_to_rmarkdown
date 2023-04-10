@@ -23,8 +23,8 @@ Participants do not need to be R experts but should be somewhat familiar with R 
 -   Slides (Coming soon!)
     <!-- -   [html](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html) (best) -->
     <!-- -   [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown_sm.pdf) -->
--   <!-- [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd) -->
--   <!-- Example analysis (best to have your own) -->
+   <!-- [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd) -->
+   <!-- Example analysis (best to have your own) -->
 
 
 ## Before the workshop
@@ -53,4 +53,4 @@ Participants do not need to be R experts but should be somewhat familiar with R 
                      "here", "knitr", "quarto", "rmarkdown"))
     ```
 
--   Have available an analysis R script to work with
+-   Have available an analysis R script to work with (optional)
