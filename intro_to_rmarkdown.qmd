@@ -520,8 +520,6 @@ Anything you'd like to add?
 :::
 ::::
 
-
-
 ## Rendering vs. Spinning
 
 
@@ -533,6 +531,7 @@ Anything you'd like to add?
 
 :::{.small}
 ````
+
 ## Setup
 This is my **great** study.... I used these packages:
 
@@ -591,7 +590,7 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
   geom_point()
 ```
 
-:::{style="margin-top:5.3em"}
+:::{style="margin-top:6.1em"}
 Or spin/render with:
 ```{r}
 #| eval: false
@@ -607,7 +606,9 @@ quarto::quarto_render(
 
 ::::
 
-
+:::{.absolute top=0 right=0}
+[See `example_spin.R`](https://steffilazerte.ca/intro_to_rmarkdown/example_spin.R)
+:::
 
 
 ## Relative locations {.nostretch}
