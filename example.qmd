@@ -1,6 +1,6 @@
 ---
 title: "My great analysis"
-format: "html"
+format: html
 date: today
 toc: true
 ---
@@ -8,7 +8,7 @@ toc: true
 ### Render report
 ```{r}
 #| eval: false
-quarto::quarto_render(output_file = paste0("example_", Sys.Date(), ".html"))
+quarto::quarto_render(input = "example.qmd", output_file = paste0("example_", Sys.Date(), ".html"))
 ```
 
 ## Setup
@@ -18,38 +18,44 @@ quarto::quarto_render(output_file = paste0("example_", Sys.Date(), ".html"))
 library(tidyverse)
 ```
 
-### Loading data
+## Data Exploration
 
-```{r data}
-
-```
-
-## Exploration
-
-```{r exploration}
-
+```{r}
+ggplot(data = mtcars, aes(x = factor(cyl), y = mpg)) +
+  theme_bw() +
+  geom_violin() +
+  geom_point()
 ```
 
 
-## Analyses
+## Analysis
 
-```{r analysis}
-
+```{r}
+m <- lm(mpg ~ factor(cyl), data = mtcars)
+summary(m)
 ```
+
 
 ## Reproducibility
 
 ### Data
-- Data available for download via CSV/Excel buttons (do not use this as data source, but as confirmation and for posterity)
+
+Data available for download via CSV/Excel buttons (do not use this as data source, but as confirmation and for posterity)
+
+<details>
+  <summary>Show data</summary>
 ```{r}
 DT::datatable(mtcars, extensions = 'Buttons',
               options = list(dom = 'Bfrtip', buttons = c('csv', 'excel')))
 ```
+</details>
 
-### Packages
+### Packages & Session Info
 
 Make sure you [cite](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/) important packages in your manuscripts
 
+<details>
+  <summary>Show packages</summary>
 
 ```{r}
 #| results: asis
@@ -62,5 +68,6 @@ report::cite_packages()
 devtools::session_info()
 ```
 
+</details>
 
 
