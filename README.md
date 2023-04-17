@@ -27,7 +27,7 @@ This GitHub repository holds all the information relating to our workshop.
   - [pdf](https://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown_sm.pdf)
 - Example files
   - Advanced Template ([code](https://github.com/steffilazerte/intro_to_rmarkdown/blob/main/example.qmd) | [download](https://steffilazerte.ca/intro_to_rmarkdown/example.qmd))
-  - Advanced Template (Spin example) ([code](https://github.com/steffilazerte/intro_to_rmarkdown/blob/main/example.qmd) | [download](https://steffilazerte.ca/intro_to_rmarkdown/example_spin.R))
+  - Advanced Template (Spin example) ([code](https://github.com/steffilazerte/intro_to_rmarkdown/blob/main/example_spin.R) | [download](https://steffilazerte.ca/intro_to_rmarkdown/example_spin.R))
 
 
 ## Before the workshop
