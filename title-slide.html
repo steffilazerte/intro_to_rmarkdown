@@ -1,0 +1,37 @@
+<section id="$idprefix$title-slide"$for(title-slide-attributes/pairs)$ $it.key$="$it.value$"$endfor$>
+  
+  $if(workshop)$
+  <p class="absolute" style="top:0">$workshop$</p>
+  $endif$
+  
+  $if(caption)$
+  <p style="position:absolute;top:0;right:0;color:grey;font-size:60%;text-align:right">$caption$</p>
+  $endif$
+  
+  <h1 class="title" style="padding-top: 150px;">$title$</h1>
+  $if(subtitle)$
+  <h3 class="subtitle" style="padding-top:5px;"><strong>$subtitle$</strong></h3>
+  $endif$
+  
+  $if(author-steffi)$
+  <p style="font-size:70%; padding-top: 120px">
+    <i class="fa-brands fa-github"></i> <a href="https://github.com/steffilazerte">steffilazerte</a><br>
+    <i class="fa-brands fa-mastodon"></i> <a href="https://fosstodon.org/@steffilazerte">@steffilazerte@fosstodon.org</a><br>
+    <i class="fa-brands fa-twitter"></i> <a href="https://twitter.com/steffilazerte">@steffilazerte</a><br>
+    <i class="fa-solid fa-globe"></i> <a href="https://steffilazerte.ca">steffilazerte.ca</a><br>
+    <img src="figures/steffi_logo.png" width="30%">
+  </p>
+  $endif$
+  
+  $for(author)$
+  <p class="author">$author$</p>
+  $endfor$
+  
+  $for(institute)$
+  <p class="institute">$institute$</p>
+  $endfor$
+  
+  $if(date)$
+  <p class="date">Compiled: $date$</p>
+  $endif$
+</section>

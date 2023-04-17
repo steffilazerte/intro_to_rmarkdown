@@ -1,35 +1,28 @@
 ---
 format: 
   revealjs:
+    author-steffi: true
+    title: "Introduction to R Markdown/Quarto <br> for Reproducibility"
+    subtitle: Birds Canada Science Hour 2023
+    date: today
+    date-format: iso
+    title-slide-attributes: 
+      data-background-image: figures/hexes.png
+      data-background-size: "50%"
+      data-background-position: "90% 80%"
+    template-partials:
+      - title-slide.html
     theme: [default, styles.scss]
     width: 1200
     slide-number: true
-execute: 
+    fontsize: 1.7em
+execute:
   echo: true
+  cache: true
 ---
 
-## Introduction to R Markdown/Quarto <br> for Reproducibility
 
-### SCO-SOC Workshop 2022 {.spacer}
-
-Steffi LaZerte  
-
-![](https://steffilazerte.ca/images/logo_eg.png){style="position:absolute; left:0; bottom:20%; width:30%"}
-
-
-![](https://rmarkdown.rstudio.com/docs/reference/figures/logo.png){fig-alt="R Markdown hex logo featuring a light green feather pen in a dark teal hexagon with the word R Markdown below" style="position:absolute; top:15%; right:10%; width: 20%"}
-
-![](https://quarto.org/quarto.png){fig-alt="Quarto logo featuring a light blue background and a white quartered circle before the word quarto" style="position:absolute; top:70%; right:5%; width:30%"}
-
-
-:::{style="position:absolute; bottom:0"}
- `r icons::fontawesome("globe")` [steffilazerte.ca](https://steffilazerte.ca)<br>
-`r icons::fontawesome("twitter")` [@steffilazerte](https://twitter.com/steffilazerte)<br>
-`r icons::fontawesome("github")` [steffilazerte](https://github.com/steffilazerte)
-:::
-
-
-# Getting Started
+# Preamble
 
 
 ## Online workshops can be challenging
@@ -63,21 +56,27 @@ Steffi LaZerte
 - For privacy, close your email etc. Or just share your RStudio window
 :::
 
-## This is me! {background-color="black" background-image="figures/office3.jpg"}
+# Introductions
 
-
-## These are my creatures {background-color="black" background-image="figures/creatures.jpg"}
+## This is me and my creatures {background-color="black" background-image="figures/creatures.jpg"}
 
 ## This is my garden {background-color="black" background-image="figures/garden.jpg"}
 
-## Introduction
+## What about you?
 
-Today learning to create static HTML reports from R code  
-[(but can also create websites, and presentations--like this one!)]{.small}
+- Name
+- Background (Role, Area of study, etc.)
+- Familiarity with R or Programming
+- Creatures (furry, feathery, scaley, green or otherwise)?
+
+## Getting Started
+
+Today we're learning to create static HTML reports from R code  
+[(but can also create websites, pdfs, and presentations--like this one!)]{.small}
 
 . . .
 
-**Why?**
+### Why?
 
 ::: {.incremental}
 
@@ -112,7 +111,7 @@ my_data
 This is what it looks like
 
 ```{{r}}
-#| fig.width = 6
+#| fig-width: 6
 ggplot(data = my_data, aes(x = urbanization, y = songs)) +
   geom_point()
 ```
@@ -140,7 +139,7 @@ my_data
 This is what it looks like
 
 ```{r}
-#| fig.width = 6
+#| fig-width: 6
 ggplot(data = my_data, aes(x = urbanization, y = songs)) +
   geom_point()
 ```
@@ -165,8 +164,8 @@ the latitudes just after and just before migration.
     migration (begin/end)
 
 ```{{r}}
-#| fig.asp: 1 
-#| fig.width: 15
+#| fig-asp: 1 
+#| fig-width: 15
 wrap_plots(g) + plot_layout(guides = "collect", nrow = 1)
 ```
 
@@ -180,18 +179,19 @@ wrap_plots(g) + plot_layout(guides = "collect", nrow = 1)
 ## Becomes...
 
 
-![](report.png)
+![](figures/report.png)
 
-## Wait a minute...
+# Wait a minute...
 
-> That doesn't look like an R Script...
+[That doesn't look like an R Script...]{.large}
 
+## Not an R script...
 
 ::::{.columns}
 
-:::{.column width="60%" .small}
+:::{.column width="60%"}
 
-````{code-line-numbers="|5,12-13,20-21|1-2,8-9,16|4,6,11,14,18,22|19"}
+````{code-line-numbers="|5,12-13,20-21|4,6,11,14,18,22|1-2,8-9,16|19"}
 ## Setup
 This is my **great** study.... I used these packages:
 
@@ -210,7 +210,7 @@ my_data
 This is what it looks like
 
 ```{{r}}
-#| fig.width = 6
+#| fig-width: 6
 ggplot(data = my_data, aes(x = urbanization, y = songs)) +
   geom_point()
 ```
@@ -222,8 +222,8 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
 ### Four things going on...
 
 1. R code
-2. Markdown
-3. R code fences (define code *chunks*)
+2. R code fences (define code *chunks*)
+3. Markdown
 4. YAML *chunk* options
 
 :::{.fragment}
@@ -239,6 +239,7 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
 
 ## Quick start
 
+- File > New Project
 - File > New File > Quarto Document [(or R Markdown, if you prefer)]{.small}
 - Add details, click "Create"
 - Click "Render" button in the top panel (Quarto)
@@ -258,7 +259,8 @@ Keep it relatively simple for now `r emo::ji("wink")`
 
 :::{.spacer}
 > What just happened? What are all these things?<br>
-> **R Markdown? Markdown? Quarto?**
+> **R Markdown? Markdown? Quarto? YAML `r emo::ji("scream")`**
+> 
 :::
 
 
@@ -270,6 +272,12 @@ Keep it relatively simple for now `r emo::ji("wink")`
 - R is the programming language/envrionment
 - RStudio is an IDE (integrated development environment)
 
+::: {layout="[-2, 13,-4,10,-3]" layout-valign="center"}
+![R](figures/R.png)
+
+![R Studio](figures/RStudio-Ball.png)
+:::
+
 
 ## Terminology
 
@@ -278,7 +286,7 @@ Keep it relatively simple for now `r emo::ji("wink")`
 - A text markup language
 - Files are `.md`
 
-
+<p>
 
 :::: {.columns}
 
@@ -328,9 +336,9 @@ A [link](https://cran.r-project.org/) to R
 > but Quarto is much newer and more powerful.
 
 
-## Terminology
+## Terminology {.space-list}
 
-### YAML, HTML, CSS
+### YAML, HTML, CSS/SCSS
 
 . . . 
 
@@ -347,6 +355,7 @@ A [link](https://cran.r-project.org/) to R
 
 - **CSS** is a language for *styling* websites
   - Can be used to apply custom styles to documents
+  - **SCSS** is CSS with superpowers
 
 
 ## Some options
@@ -382,13 +391,13 @@ code-fold: true
 
 ````
 ```{{r}}
-#| fig.width: 10
-#| fig.asp: 0.5
-#| fig.alt: |
+#| fig-width: 10
+#| fig-asp: 0.5
+#| fig-alt: |
 #|   A scatterplot in black and white showing degree of 
 #|   urbanization on the x-axis and number of songs on 
 #|   the y-axis with no appreciable pattern in the data.
-#| fig.cap: |
+#| fig-cap: |
 #|   The relationship between urbanization and the number
 #|   of songs in mountain chickadee dawn choruses.
 
@@ -400,12 +409,12 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
 
 :::{.column width="45%"}
 
-- `fig.width` width of figure in inches
-- `fig.asp` aspect of the figure (1 = square)
+- `fig-width` width of figure in inches
+- `fig-asp` aspect of the figure (1 = square)
    (i.e. height = width * aspect)
-- `fig.alt` **Accessibility** Alt text for screen readers helping those who can't see the figure 
+- `fig-alt` **Accessibility** Alt text for screen readers helping those who can't see the figure 
    (should be descriptive, not the same as a caption)
-- `fig.cap` Figure caption 
+- `fig-cap` Figure caption 
 
 :::
   
@@ -413,13 +422,13 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
 
 ## Gives...
 ```{r}
-#| fig.width: 10
-#| fig.asp: 0.5
-#| fig.alt: |
+#| fig-width: 10
+#| fig-asp: 0.5
+#| fig-alt: |
 #|   A scatterplot in black and white showing degree of 
 #|   urbanization on the x-axis and number of songs on 
 #|   the y-axis with no appreciable pattern in the data.
-#| fig.cap: |
+#| fig-cap: |
 #|   The relationship between urbanization and the number
 #|   of songs in mountain chickadee dawn choruses.
 
@@ -441,19 +450,28 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
 DT::datatable(mtcars, extensions = 'Buttons',
               options = list(dom = 'Bfrtip', buttons = c('csv', 'excel')))
 ```
-                 
-. . . 
+  
 
-:::{.spacer}
-> And seriously, **[cite](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/) the packages `r emo::ji("grin")`**
+# Cite the Packages!
+
+:::{.small}
+Seriously, **[cite](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/) the packages `r emo::ji("grin")`**
 :::
+
+![](figures/cite_packages.png)
+
+
+
+
 
 # Your Turn
 
 Use the more advanced [template](https://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
 (`example.qmd`) to create a reproducible report of your analysis. 
 
-Consider the options we learned about. Anything you'd like to add?
+Consider the options we learned
+
+Anything you'd like to add?
 
 # Some Final Thoughts
 
@@ -469,7 +487,7 @@ Consider the options we learned about. Anything you'd like to add?
 :::{.hide .spacer}
 |                    |   |       |   |      |
 | -----------------: | - | ----- | - | ---- |
-| **`.Rmd`/`.qmd`**  | → | `.md` | → | HTML |
+| **`.Rmd`/`.qmd`**  | {{< fa arrow-right >}} | `.md` | {{< fa arrow-right >}} | HTML |
 : {tbl-colwidths="[10,5,5,5,75]"}
 :::
 
@@ -486,7 +504,7 @@ Consider the options we learned about. Anything you'd like to add?
 :::{.hide .spacer}
 |                    |   |       |   |      |
 | -----------------: | - | ----- | - | ---- |
-|**`.R`**           | → | `.md` | → | HTML |
+|**`.R`**           | {{< fa arrow-right >}} | `.md` | {{< fa arrow-right >}} | HTML |
 : {tbl-colwidths="[10,5,5,5,75]"}
 :::
 
@@ -495,17 +513,14 @@ Consider the options we learned about. Anything you'd like to add?
 - Easier to code 
 - Use `#'` to define markdown
 - Use `#+` to define chunk options
+  - Use Rmarkdown option style
+  - i.e., `error=FALSE` not `error: false`
 :::
 
 :::
 ::::
 
-. . . 
 
-:::{.spacer}
-> Quarto notation (slightly different from R Markdown) *only* for
-> `.qmd` documents so far
-:::
 
 ## Rendering vs. Spinning
 
@@ -536,11 +551,19 @@ my_data
 This is what it looks like
 
 ```{{r}}
-#| fig.width = 6
+#| fig-width: 6
 ggplot(data = my_data, aes(x = urbanization, y = songs)) +
   geom_point()
 ```
 ````
+
+Or render with:
+```{r}
+#| eval: false
+quarto::quarto_render(
+  input = "example.qmd", 
+  output_file = paste0("example_", Sys.Date(), ".html"))
+```
 :::
 :::
 
@@ -563,13 +586,23 @@ my_data
 
 #' This is what it looks like
 
-#+ fig.width = 6
+#+ fig-width = 6
 ggplot(data = my_data, aes(x = urbanization, y = songs)) +
   geom_point()
 ```
-:::
-:::
 
+:::{style="margin-top:5.3em"}
+Or spin/render with:
+```{r}
+#| eval: false
+knitr::spin("example_spin.R", knit = FALSE)
+quarto::quarto_render(
+  input = "example_spin.Rmd",
+  output_file = paste0("example_spin_", Sys.Date(), ".html"))
+```
+:::
+:::
+:::
 
 
 ::::
@@ -577,10 +610,11 @@ ggplot(data = my_data, aes(x = urbanization, y = songs)) +
 
 
 
-## Relative locations
+## Relative locations {.nostretch}
 
-If you use nested folders in your work, you'll want to use the [here](https://here.r-lib.org/)
-package to ensure all the file locations are consistent
+If you use nested folders in your work,<br>
+you'll want to use the [here](https://here.r-lib.org/) package to ensure<br>
+all the file locations are consistent
 
 ```{r eval = FALSE}
 library(here)
@@ -589,6 +623,9 @@ library(tidyverse)
 my_data <- read_csv(here("Data/my_data.csv"))
 ```
 
+![](figures/here.png){.absolute right=-5% bottom=0 width=58% fig-alt="A cartoon showing two paths side-by-side. On the left is a scary spooky forest, with spiderwebs and gnarled trees, with file paths written on the branches like '~/mmm/nope.csv' and 'setwd('/haha/good/luck/')', with a scared looking cute fuzzy monster running out of it. On the right is a bright, colorful path with flowers, rainbow and sunshine, with signs saying 'here!' and 'it’s all right here!' A monster facing away from us in a backpack and walking stick is looking toward the right path. Stylized text reads 'here: find your path.'"}
+
+[Artwork by [@allison_horst](https://twitter.com/allison_horst)]{.footnote}
 
 ## Resources  {.nostretch}
 
@@ -621,13 +658,16 @@ my_data <- read_csv(here("Data/my_data.csv"))
 
 ::::
 
-. . .
 
 
-### Thank you! {style="position:absolute; top:50%; right:0"}
+:::{.fragment fragment-index=1 .absolute top=50% right=0 width=30%}
+### Thank you! 
 
-![](https://steffilazerte.ca/images/logo_eg.png){style="position:absolute; right:0; top:58%; width:30%"}
+![](https://steffilazerte.ca/images/logo_eg.png)
+[{{< fa globe >}} [steffilazerte.ca](https://steffilazerte.ca)]{.small}<br>
+[{{< fa envelope >}} <sel@steffilazerte.ca>]{.small}
+:::
 
-
-[*Slides created with [Quarto](https://quarto.org)<br>Updated `r Sys.Date()`*]{.small style="position:absolute; top:78%; right:0; text-align:right"}
-
+:::{.fragment fragment-index=1}
+[*Slides created with [Quarto](https://quarto.org) Updated `r Sys.Date()`*]{.footnote}
+:::
