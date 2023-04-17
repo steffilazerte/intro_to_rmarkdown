@@ -22,11 +22,11 @@ This GitHub repository holds all the information relating to our workshop.
 
 ## Workshop resources
 
--   Slides (Coming soon!)
-    <!-- -   [html](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown.html) (best) -->
-    <!-- -   [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown_sm.pdf) -->
-   <!-- [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd) -->
-   <!-- Example analysis (best to have your own) -->
+- Slides
+  - [html](http://steffilazerte.ca/intro_to_rmarkdown/index.html) (best)
+  - [pdf](http://steffilazerte.ca/intro_to_rmarkdown/intro_to_rmarkdown_sm.pdf)
+  - [Advanced Template](http://steffilazerte.ca/intro_to_rmarkdown/example.qmd)
+  - [Advanced Template (Spin example)](http://steffilazerte.ca/intro_to_rmarkdown/example_spin.qmd)
 
 
 ## Before the workshop

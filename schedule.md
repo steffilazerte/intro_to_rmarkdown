@@ -3,21 +3,20 @@
 
 120min total, 5-10min break halfway
 
-- 5-10 min of introductions
+- 10-15 min of introductions
 - 10 min intro
 - 5 min Demo
 - 10 min Activity
 
-(break?)
-
 - 10 min to options
-- 5 min Activity
+
+(50min) => Break? (5-10 min break)
+
+- 5 min Activity (add TOC etc.)
 - 1 min to second options
-- 5 min Activity
+- 5 min Activity (add figure options)
 
-(50min)
-
-(5-10 min break)
+(60min) => Break instead?
 
 - 10 min to advanced example
 - 20-30 min Activity

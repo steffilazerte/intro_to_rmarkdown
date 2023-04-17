@@ -5,3 +5,6 @@
 
 /.quarto/
 intro_to_rmarkdown.pdf
+intro_to_rmarkdown_cache/
+example_files/
+example_spin_files/

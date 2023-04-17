@@ -5,11 +5,14 @@
 <script src="intro_to_rmarkdown_files/libs/quarto-html/popper.min.js"></script>
 <script src="intro_to_rmarkdown_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="intro_to_rmarkdown_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="intro_to_rmarkdown_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet">
-<link href="intro_to_rmarkdown_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.613">
+<link href="intro_to_rmarkdown_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="intro_to_rmarkdown_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="intro_to_rmarkdown_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="intro_to_rmarkdown_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
 
-  <title>intro_to_rmarkdown</title>
+  <meta name="dcterms.date" content="2023-04-17">
+  <title>Introduction to R Markdown/Quarto   for Reproducibility</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -18,10 +21,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -377,25 +385,32 @@
     }
   </style>
 </head>
-<body>
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-
-<section id="introduction-to-r-markdownquarto-for-reproducibility" class="slide level2">
-<h2>Introduction to R Markdown/Quarto <br> for Reproducibility</h2>
-<h3 class="spacer" id="sco-soc-workshop-2022">SCO-SOC Workshop 2022</h3>
-<p>Steffi LaZerte</p>
-<p><img data-src="https://steffilazerte.ca/images/logo_eg.png" style="position:absolute; left:0; bottom:20%; width:30%"></p>
-<p><img data-src="https://rmarkdown.rstudio.com/docs/reference/figures/logo.png" style="position:absolute; top:15%; right:10%; width: 20%" alt="R Markdown hex logo featuring a light green feather pen in a dark teal hexagon with the word R Markdown below"></p>
-<p><img data-src="https://quarto.org/quarto.png" style="position:absolute; top:70%; right:5%; width:30%" alt="Quarto logo featuring a light blue background and a white quartered circle before the word quarto"></p>
-<div style="position:absolute; bottom:0">
-<p><svg viewbox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path></svg> <a href="https://steffilazerte.ca">steffilazerte.ca</a><br> <svg viewbox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg> <a href="https://twitter.com/steffilazerte"><span class="citation" data-cites="steffilazerte">@steffilazerte</span></a><br> <svg viewbox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg> <a href="https://github.com/steffilazerte">steffilazerte</a></p>
-</div>
-</section>
+<section id="title-slide" data-background-image="figures/hexes.png" data-background-position="90% 80%" data-background-size="50%" class="center">
+  
+    
+    
+  <h1 class="title" style="padding-top: 150px;">Introduction to R Markdown/Quarto <br> for Reproducibility</h1>
+    <h3 class="subtitle" style="padding-top:5px;"><strong>Birds Canada Science Hour 2023</strong></h3>
+    
+    <p style="font-size:70%; padding-top: 120px">
+    <i class="fa-brands fa-github"></i> <a href="https://github.com/steffilazerte">steffilazerte</a><br>
+    <i class="fa-brands fa-mastodon"></i> <a href="https://fosstodon.org/@steffilazerte">@steffilazerte@fosstodon.org</a><br>
+    <i class="fa-brands fa-twitter"></i> <a href="https://twitter.com/steffilazerte">@steffilazerte</a><br>
+    <i class="fa-solid fa-globe"></i> <a href="https://steffilazerte.ca">steffilazerte.ca</a><br>
+    <img src="figures/steffi_logo.png" width="30%">
+  </p>
+    
+    
+    
+    <p class="date">Compiled: 2023-04-17</p>
+  </section>
 <section>
-<section id="getting-started" class="title-slide slide level1 center">
-<h1>Getting Started</h1>
+<section id="preamble" class="title-slide slide level1 center">
+<h1>Preamble</h1>
 
 </section>
 <section id="online-workshops-can-be-challenging" class="slide level2">
@@ -431,22 +446,33 @@
 <li>For privacy, close your email etc. Or just share your RStudio window</li>
 </ul>
 </div>
+</section></section>
+<section>
+<section id="introductions" class="title-slide slide level1 center">
+<h1>Introductions</h1>
+
 </section>
-<section id="this-is-me" class="slide level2" data-background-color="black" data-background-image="figures/office3.jpg">
-<h2>This is me!</h2>
-</section>
-<section id="these-are-my-creatures" class="slide level2" data-background-color="black" data-background-image="figures/creatures.jpg">
-<h2>These are my creatures</h2>
+<section id="this-is-me-and-my-creatures" class="slide level2" data-background-color="black" data-background-image="figures/creatures.jpg">
+<h2>This is me and my creatures</h2>
 </section>
 <section id="this-is-my-garden" class="slide level2" data-background-color="black" data-background-image="figures/garden.jpg">
 <h2>This is my garden</h2>
 </section>
-<section id="introduction" class="slide level2">
-<h2>Introduction</h2>
-<p>Today learning to create static HTML reports from R code<br>
-<span class="small">(but can also create websites, and presentations–like this one!)</span></p>
+<section id="what-about-you" class="slide level2">
+<h2>What about you?</h2>
+<ul>
+<li>Name</li>
+<li>Background (Role, Area of study, etc.)</li>
+<li>Familiarity with R or Programming</li>
+<li>Creatures (furry, feathery, scaley, green or otherwise)?</li>
+</ul>
+</section>
+<section id="getting-started" class="slide level2">
+<h2>Getting Started</h2>
+<p>Today we’re learning to create static HTML reports from R code<br>
+<span class="small">(but can also create websites, pdfs, and presentations–like this one!)</span></p>
 <div class="fragment">
-<p><strong>Why?</strong></p>
+<h3 id="why">Why?</h3>
 <div>
 <ul>
 <li class="fragment">Keep track of your code <em>and</em> results</li>
@@ -455,11 +481,11 @@
 <li class="fragment">Be nice to your future self (<em>What did I do again? What were the results?</em>)</li>
 </ul>
 </div>
-</div>
 <div class="fragment">
 <blockquote>
 <p>Okay, what kind of report?</p>
 </blockquote>
+</div>
 </div>
 </section>
 <section id="for-example" class="slide level2">
@@ -482,7 +508,7 @@
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>This is what it looks like</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width = 6</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data, <span class="fu">aes</span>(<span class="at">x =</span> urbanization, <span class="at">y =</span> songs)) <span class="sc">+</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -492,14 +518,14 @@
 <div class="box small">
 <h3 id="setup">Setup</h3>
 <p>This is my <strong>great</strong> study…. I used these packages:</p>
-<div class="cell">
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-1_559e766433b935d4602d98ff3028e97c">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-✔ tibble  3.1.7     ✔ dplyr   1.0.9
-✔ tidyr   1.2.0     ✔ stringr 1.4.1
-✔ readr   2.1.2     ✔ forcats 0.5.1
+✔ ggplot2 3.4.1     ✔ purrr   1.0.1
+✔ tibble  3.2.1     ✔ dplyr   1.1.1
+✔ tidyr   1.3.0     ✔ stringr 1.5.0
+✔ readr   2.1.4     ✔ forcats 1.0.0
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
@@ -507,7 +533,7 @@
 </div>
 <h3 class="spacer" id="loading-data">Loading data</h3>
 <p>These are the datasets I used</p>
-<div class="cell">
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-2_e1d93ca825ef48a71f34e2abae704743">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/steffilazerte/NRI_7350/main/data/chorus.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>my_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -524,11 +550,11 @@
  8        3.05      0   122
  9        2.64     80     1
 10       -1.54      0    45
-# … with 41 more rows</code></pre>
+# ℹ 41 more rows</code></pre>
 </div>
 </div>
 <p>This is what it looks like</p>
-<div class="cell">
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-3_3c71dae99cff4c0ec3beb086e4435ace">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data, <span class="fu">aes</span>(<span class="at">x =</span> urbanization, <span class="at">y =</span> songs)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -552,8 +578,8 @@
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">    migration (begin/end)</span></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.asp: 1 </span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width: 15</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 1 </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 15</span></span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap_plots</span>(g) <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="small spacer">
@@ -563,15 +589,17 @@
 <section id="becomes-1" class="slide level2">
 <h2>Becomes…</h2>
 
-<img data-src="report.png" class="r-stretch"></section>
-<section id="wait-a-minute" class="slide level2">
-<h2>Wait a minute…</h2>
-<blockquote>
-<p>That doesn’t look like an R Script…</p>
-</blockquote>
+<img data-src="figures/report.png" class="r-stretch"></section></section>
+<section>
+<section id="wait-a-minute" class="title-slide slide level1 center">
+<h1>Wait a minute…</h1>
+<p><span class="large">That doesn’t look like an R Script…</span></p>
+</section>
+<section id="not-an-r-script" class="slide level2">
+<h2>Not an R script…</h2>
 <div class="columns">
-<div class="column small" style="width:60%;">
-<div class="sourceCode" id="cb8" data-code-line-numbers="|5,12-13,20-21|1-2,8-9,16|4,6,11,14,18,22|19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup</span></span>
+<div class="column" style="width:60%;">
+<div class="sourceCode" id="cb8" data-code-line-numbers="|5,12-13,20-21|4,6,11,14,18,22|1-2,8-9,16|19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>This is my **great** study.... I used these packages:</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -589,7 +617,7 @@
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>This is what it looks like</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width = 6</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data, <span class="fu">aes</span>(<span class="at">x =</span> urbanization, <span class="at">y =</span> songs)) <span class="sc">+</span></span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -597,8 +625,8 @@
 <h3 id="four-things-going-on">Four things going on…</h3>
 <ol type="1">
 <li>R code</li>
-<li>Markdown</li>
 <li>R code fences (define code <em>chunks</em>)</li>
+<li>Markdown</li>
 <li>YAML <em>chunk</em> options</li>
 </ol>
 <div class="fragment">
@@ -614,6 +642,7 @@ it’s an <strong>R Markdown (<code>.Rmd</code>)</strong> or<br>
 <section id="quick-start" class="slide level2">
 <h2>Quick start</h2>
 <ul>
+<li>File &gt; New Project</li>
 <li>File &gt; New File &gt; Quarto Document <span class="small">(or R Markdown, if you prefer)</span></li>
 <li>Add details, click “Create”</li>
 <li>Click “Render” button in the top panel (Quarto)
@@ -633,7 +662,7 @@ it’s an <strong>R Markdown (<code>.Rmd</code>)</strong> or<br>
 <div class="fragment">
 <div class="spacer">
 <blockquote>
-<p>What just happened? What are all these things?<br> <strong>R Markdown? Markdown? Quarto?</strong></p>
+<p>What just happened? What are all these things?<br> <strong>R Markdown? Markdown? Quarto? YAML 😱</strong></p>
 </blockquote>
 </div>
 </div>
@@ -646,6 +675,35 @@ it’s an <strong>R Markdown (<code>.Rmd</code>)</strong> or<br>
 <li>R is the programming language/envrionment</li>
 <li>RStudio is an IDE (integrated development environment)</li>
 </ul>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 6.3%;justify-content: center;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 40.6%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/R.png"></p>
+<p></p><figcaption>R</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 12.5%;justify-content: center;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 31.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/RStudio-Ball.png"></p>
+<p></p><figcaption>R Studio</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 9.4%;justify-content: center;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
 </section>
 <section id="terminology-1" class="slide level2">
 <h2>Terminology</h2>
@@ -654,10 +712,11 @@ it’s an <strong>R Markdown (<code>.Rmd</code>)</strong> or<br>
 <li>A text markup language</li>
 <li>Files are <code>.md</code></li>
 </ul>
-<div class="columns">
+<p>
+</p><div class="columns">
 <div class="column" style="width:60%;">
 <p><span class="spacer"><strong>For example, the following…</strong></span></p>
-<div class="cell">
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-4_206a65a4e6abcb0a05bebbcb1650cec3">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">### My heading</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a>**Hi!** This is in *italics*</span>
@@ -688,9 +747,9 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 </blockquote>
 </div>
 </section>
-<section id="terminology-3" class="slide level2">
+<section id="terminology-3" class="slide level2 space-list">
 <h2>Terminology</h2>
-<h3 id="yaml-html-css">YAML, HTML, CSS</h3>
+<h3 id="yaml-html-cssscss">YAML, HTML, CSS/SCSS</h3>
 <div class="fragment">
 <ul>
 <li><strong>YAML</strong> is a language for specifying metadata
@@ -713,6 +772,7 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 <li><strong>CSS</strong> is a language for <em>styling</em> websites
 <ul>
 <li>Can be used to apply custom styles to documents</li>
+<li><strong>SCSS</strong> is CSS with superpowers</li>
 </ul></li>
 </ul>
 </div>
@@ -720,7 +780,7 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 <section id="some-options" class="slide level2">
 <h2>Some options</h2>
 <h3 id="document-level-options---yaml-block">Document level options - YAML block</h3>
-<div class="cell">
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-5_972a9d53a63c40ef05579ddffb11c221">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="pp">---</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My great analysis"</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
@@ -744,13 +804,13 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 <div class="columns">
 <div class="column small" style="width:55%;">
 <div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width: 10</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.asp: 0.5</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.alt: |</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: |</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#|   A scatterplot in black and white showing degree of </span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#|   urbanization on the x-axis and number of songs on </span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#|   the y-axis with no appreciable pattern in the data.</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.cap: |</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: |</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#|   The relationship between urbanization and the number</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#|   of songs in mountain chickadee dawn choruses.</span></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
@@ -759,17 +819,17 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:45%;">
 <ul>
-<li><code>fig.width</code> width of figure in inches</li>
-<li><code>fig.asp</code> aspect of the figure (1 = square) (i.e.&nbsp;height = width * aspect)</li>
-<li><code>fig.alt</code> <strong>Accessibility</strong> Alt text for screen readers helping those who can’t see the figure (should be descriptive, not the same as a caption)</li>
-<li><code>fig.cap</code> Figure caption</li>
+<li><code>fig-width</code> width of figure in inches</li>
+<li><code>fig-asp</code> aspect of the figure (1 = square) (i.e.&nbsp;height = width * aspect)</li>
+<li><code>fig-alt</code> <strong>Accessibility</strong> Alt text for screen readers helping those who can’t see the figure (should be descriptive, not the same as a caption)</li>
+<li><code>fig-cap</code> Figure caption</li>
 </ul>
 </div>
 </div>
 </section>
 <section id="gives" class="slide level2">
 <h2>Gives…</h2>
-<div class="cell" data-fig.asp="0.5">
+<div class="cell" data-fig.asp="0.5" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-6_81f9b16c674266ba258897e4435819a3">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data, <span class="fu">aes</span>(<span class="at">x =</span> urbanization, <span class="at">y =</span> songs)) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
@@ -788,22 +848,24 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 </ul></li>
 <li>Embed data directly (for smaller datasets) using <a href="https://rstudio.github.io/DT/">DT</a> package</li>
 </ul>
-<div class="cell">
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-7_f6ba65a180820cc603e1f5115e13d136">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(mtcars, <span class="at">extensions =</span> <span class="st">'Buttons'</span>,</span>
 <span id="cb13-2"><a href="#cb13-2"></a>              <span class="at">options =</span> <span class="fu">list</span>(<span class="at">dom =</span> <span class="st">'Bfrtip'</span>, <span class="at">buttons =</span> <span class="fu">c</span>(<span class="st">'csv'</span>, <span class="st">'excel'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
-<div class="spacer">
-<blockquote>
-<p>And seriously, <strong><a href="https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/">cite</a> the packages 😁</strong></p>
-</blockquote>
-</div>
-</div>
 </section></section>
+<section id="cite-the-packages" class="title-slide slide level1 center">
+<h1>Cite the Packages!</h1>
+<div class="small">
+<p>Seriously, <strong><a href="https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/">cite</a> the packages 😁</strong></p>
+</div>
+
+<img data-src="figures/cite_packages.png" class="r-stretch"></section>
+
 <section id="your-turn-1" class="title-slide slide level1 center">
 <h1>Your Turn</h1>
 <p>Use the more advanced <a href="https://steffilazerte.ca/intro_to_rmarkdown/example.qmd">template</a> (<code>example.qmd</code>) to create a reproducible report of your analysis.</p>
-<p>Consider the options we learned about. Anything you’d like to add?</p>
+<p>Consider the options we learned</p>
+<p>Anything you’d like to add?</p>
 </section>
 
 <section>
@@ -828,9 +890,9 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;"><strong><code>.Rmd</code>/<code>.qmd</code></strong></td>
-<td>→</td>
+<td><p><i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i></p></td>
 <td><code>.md</code></td>
-<td>→</td>
+<td><p><i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i></p></td>
 <td>HTML</td>
 </tr>
 </tbody>
@@ -857,9 +919,9 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;"><strong><code>.R</code></strong></td>
-<td>→</td>
+<td><p><i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i></p></td>
 <td><code>.md</code></td>
-<td>→</td>
+<td><p><i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i></p></td>
 <td>HTML</td>
 </tr>
 </tbody>
@@ -869,16 +931,13 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 <ul>
 <li>Easier to code</li>
 <li>Use <code>#'</code> to define markdown</li>
-<li>Use <code>#+</code> to define chunk options</li>
+<li>Use <code>#+</code> to define chunk options
+<ul>
+<li>Use Rmarkdown option style</li>
+<li>i.e., <code>error=FALSE</code> not <code>error: false</code></li>
+</ul></li>
 </ul>
 </div>
-</div>
-</div>
-<div class="fragment">
-<div class="spacer">
-<blockquote>
-<p>Quarto notation (slightly different from R Markdown) <em>only</em> for <code>.qmd</code> documents so far</p>
-</blockquote>
 </div>
 </div>
 </section>
@@ -906,45 +965,62 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>This is what it looks like</span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width = 6</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data, <span class="fu">aes</span>(<span class="at">x =</span> urbanization, <span class="at">y =</span> songs)) <span class="sc">+</span></span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or render with:</p>
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-8_a4724d856ee6acc01a734d33ba29bf91">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="at">input =</span> <span class="st">"example.qmd"</span>, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="at">output_file =</span> <span class="fu">paste0</span>(<span class="st">"example_"</span>, <span class="fu">Sys.Date</span>(), <span class="st">".html"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div><div class="column" style="width:&quot;50%;">
 <h3 id="spinning-knit-button-1">Spinning <span class="small">(Knit button)</span></h3>
 <div class="small">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">#' ## Setup</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="co">#' This is my **great** study.... I used these packages:</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb15-5"><a href="#cb15-5"></a></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="co">#' ## Loading data</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#' These are the datasets I used</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a></span>
-<span id="cb15-9"><a href="#cb15-9"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/steffilazerte/NRI_7350/main/data/chorus.csv"</span>)</span>
-<span id="cb15-10"><a href="#cb15-10"></a>my_data</span>
-<span id="cb15-11"><a href="#cb15-11"></a></span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="co">#' This is what it looks like</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a></span>
-<span id="cb15-14"><a href="#cb15-14"></a><span class="co">#+ fig.width = 6</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data, <span class="fu">aes</span>(<span class="at">x =</span> urbanization, <span class="at">y =</span> songs)) <span class="sc">+</span></span>
-<span id="cb15-16"><a href="#cb15-16"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-9_d22af6f985ed0569a15085bd84bd33f2">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">#' ## Setup</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co">#' This is my **great** study.... I used these packages:</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="co">#' ## Loading data</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="co">#' These are the datasets I used</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a></span>
+<span id="cb16-9"><a href="#cb16-9"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/steffilazerte/NRI_7350/main/data/chorus.csv"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10"></a>my_data</span>
+<span id="cb16-11"><a href="#cb16-11"></a></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#' This is what it looks like</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="co">#+ fig-width = 6</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data, <span class="fu">aes</span>(<span class="at">x =</span> urbanization, <span class="at">y =</span> songs)) <span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div style="margin-top:5.3em">
+<p>Or spin/render with:</p>
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-10_926abe717b2f12ef482dc6ea9ebf6f90">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>knitr<span class="sc">::</span><span class="fu">spin</span>(<span class="st">"example_spin.R"</span>, <span class="at">knit =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(</span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">input =</span> <span class="st">"example_spin.Rmd"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="at">output_file =</span> <span class="fu">paste0</span>(<span class="st">"example_spin_"</span>, <span class="fu">Sys.Date</span>(), <span class="st">".html"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="relative-locations" class="slide level2">
+<section id="relative-locations" class="slide level2 nostretch">
 <h2>Relative locations</h2>
-<p>If you use nested folders in your work, you’ll want to use the <a href="https://here.r-lib.org/">here</a> package to ensure all the file locations are consistent</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"Data/my_data.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you use nested folders in your work,<br> you’ll want to use the <a href="https://here.r-lib.org/">here</a> package to ensure<br> all the file locations are consistent</p>
+<div class="cell" data-hash="intro_to_rmarkdown_cache/revealjs/unnamed-chunk-11_ea2e908e2759529cf75fcb36e6928a38">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"Data/my_data.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><img data-src="figures/here.png" class="absolute" style="bottom: 0px; right: -5%; width: 58%; " alt="A cartoon showing two paths side-by-side. On the left is a scary spooky forest, with spiderwebs and gnarled trees, with file paths written on the branches like '~/mmm/nope.csv' and 'setwd('/haha/good/luck/')', with a scared looking cute fuzzy monster running out of it. On the right is a bright, colorful path with flowers, rainbow and sunshine, with signs saying 'here!' and 'it’s all right here!' A monster facing away from us in a backpack and walking stick is looking toward the right path. Stylized text reads 'here: find your path.'"></p>
+<p><span class="footnote">Artwork by <a href="https://twitter.com/allison_horst"><span class="citation" data-cites="allison_horst">@allison_horst</span></a></span></p>
 </section>
 <section id="resources" class="slide level2 nostretch">
 <h2>Resources</h2>
@@ -972,13 +1048,16 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 </ul>
 </div>
 </div>
-<div class="fragment">
-<h3 style="position:absolute; top:50%; right:0" id="thank-you">Thank you!</h3>
-<p><img data-src="https://steffilazerte.ca/images/logo_eg.png" style="position:absolute; right:0; top:58%; width:30%"></p>
-<p><span class="small" style="position:absolute; top:78%; right:0; text-align:right"><em>Slides created with <a href="https://quarto.org">Quarto</a><br>Updated 2022-09-12</em></span></p>
+<div class="fragment absolute" data-fragment-index="1" style="top: 50%; right: 0px; width: 30%; ">
+<!-- -->
+<h3 id="thank-you">Thank you!</h3>
+<p><img data-src="https://steffilazerte.ca/images/logo_eg.png"> <span class="small"><i class="fa-solid fa-globe" aria-label="globe"></i> <a href="https://steffilazerte.ca">steffilazerte.ca</a></span><br> <span class="small"><i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:sel@steffilazerte.ca" class="email">sel@steffilazerte.ca</a></span></p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p><span class="footnote"><em>Slides created with <a href="https://quarto.org">Quarto</a> Updated 2023-04-17</em></span></p>
+</div>
 <div class="footer footer-default">
 
-</div>
 </div>
 </section></section>
     </div>
@@ -1198,12 +1277,15 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -1214,13 +1296,6 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy
@@ -1236,6 +1311,24 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
       const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
       tabsets.forEach(function(tabset) {
         const tabby = new Tabby('#' + tabset.id);
@@ -1254,7 +1347,24 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -1284,31 +1394,50 @@ Quarto (<code>.qmd</code>) is the <em>next generation</em> of R Markdown (<code>
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>
