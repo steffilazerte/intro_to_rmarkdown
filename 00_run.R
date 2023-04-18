@@ -1,3 +1,5 @@
+# Before -----------------------------------
+
 library(magick)
 
 q <- image_read("https://raw.githubusercontent.com/rstudio/hex-stickers/main/PNG/quarto.png")
@@ -23,3 +25,9 @@ system(glue::glue("gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 ",
                   "-dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH ",
                   "-sOutputFile='intro_to_rmarkdown_sm.pdf' ",
                   "'intro_to_rmarkdown.pdf'"))
+
+# After --------------
+
+# Make release
+
+usethis::use_github_release()
