@@ -42,13 +42,10 @@ summary(m)
 
 Data available for download via CSV/Excel buttons (do not use this as data source, but as confirmation and for posterity)
 
-<details>
-  <summary>Show data</summary>
 ```{r}
 DT::datatable(mtcars, extensions = 'Buttons',
               options = list(dom = 'Bfrtip', buttons = c('csv', 'excel')))
 ```
-</details>
 
 ### Packages & Session Info
 
